@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Home from './Home';
+
 
 import {
     ThemeProvider, 
@@ -14,18 +15,30 @@ const useStyle = makeStyles ({
 });
 
 function App() {
-    const classes = useStyle();
+    const [darkMode, setDarkMode] = useState(false);
+
     const theme = createMuiTheme({
+        spacing:4,
         palette:{
-            main: '#f44336'
+            type: darkMode ? 'dark' : 'light',
+            primary:{
+                main: '#f44336'
+            },
+            secondary:{
+                main: '#3EA6FF'
+            },
+            background:{
+                default: darkMode ? '#232323' : '#FFF',
+                dark: darkMode ? '#181818' : '#f4f6f8',
+                paper: darkMode ? '#232323' : '#FFF'
+            },    
         },
-        secondary:{
-            main: '#3f51b5'
-        }
+        
     });
+    const classes = useStyle();
     return (
         <ThemeProvider theme={theme}>
-           <Home />
+           <Home darkMode={darkMode} setDarkMode={setDarkMode}/>
         </ThemeProvider>  
     );
 }

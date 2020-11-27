@@ -21,8 +21,3 @@
 
 <hr>
 
-Obs - Para fazer o clone do netflix, estou usando uma api conhecida como <b>TMDB</b>, essa api tem deversos filmes e series. 
-
-Obs - É necessário fazer um cadastro para ter acesso ao key.
-
--	https://www.themoviedb.org/
