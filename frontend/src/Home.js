@@ -159,33 +159,7 @@ const videos =[
         avatar: logo,
          thumb: thumb1
     },
-    {
-        id:8,
-        title: 'Thiago jose da silva',
-        channel: 'Thiago',
-        views: '11 mi de visualizações',
-        date: 'Há 1 semana',
-        avatar: logo,
-         thumb: thumb1
-    },
-    {
-        id:9,
-        title: 'Thiago jose da silva',
-        channel: 'Thiago',
-        views: '11 mi de visualizações',
-        date: 'Há 1 semana',
-        avatar: logo,
-         thumb: thumb1
-    },
-    {
-        id:10,
-        title: 'Thiago jose da silva',
-        channel: 'Thiago',
-        views: '11 mi de visualizações',
-        date: 'Há 1 semana',
-        avatar: logo,
-         thumb: thumb1
-    },
+    
 ]
 
 export default ({darkMode, setDarkMode}) => {
