@@ -52,17 +52,26 @@ const useStyle = makeStyles((theme) => ({
     appbar: {
         boxShadow: 'none',
         zIndex: theme.zIndex.drawer + 1,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: 15
     },
-    grow: {
-        flexGrow: 1
+    divv: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        color: 'inherit',
+        marginLeft: 100
     },
     icons: {
     },
-    menuIcon: {
-        paddingRight: theme.spacing(6)
-    },
     logo: {
-        height: 25
+        height: 25,
+        marginLeft: 30
+
     },
     drawer: {
         width: 240,
@@ -84,6 +93,13 @@ const useStyle = makeStyles((theme) => ({
     },
     subheader: {
         textTransform: 'uppercase'
+    },
+    divLogo:{
+        marginRight: 200
+    },
+    divSearch:{
+        paddingBottom: 10,
+        width: 500
     }
 }));
 
@@ -94,43 +110,40 @@ export default ({ darkMode, setDarkMode }) => {
     const [videos, setVideos] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState(null);
 
-    useEffect(() =>{
-        handleSubmit("todos");
-    },[]);
+    useEffect(() => {
+        handleSubmit("reactjs");
+    }, []);
 
     return (
         <div className={classes.root}>
             <AppBar color='inherit' className={classes.appbar}>
-                <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuIcon}
-                        aria-label="menu"
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                <IconButton
+                    edge="start"
+                    aria-label="menu"
+                    className={classes.divLogo}
+                >
+                    <MenuIcon />
                     <img src={theme.palette.type === 'dark' ? logoBranco : logo} alt="logo" className={classes.logo} />
-                    <div className={classes.grow} />
+                </IconButton>
 
-                    <SearchBar onSubmit={handleSubmit} />
+                {/* <div className={classes.divSearch}> */}
+                <SearchBar onSubmit={handleSubmit} />
+                {/* </div> */}
 
+                <div className={classes.divv}>
                     <Switch
                         value={darkMode}
                         onChange={() => setDarkMode(!darkMode)}
                     />
-                    <IconButton
-                        className={classes.icons}
-                    >
+                    <IconButton>
                         <VideoCallIcon />
                     </IconButton>
-                    <IconButton
-                        className={classes.icons}
-                    >
+
+                    <IconButton>
                         <AppsIcon />
                     </IconButton>
-                    <IconButton
-                        className={classes.icons}
-                    >
+
+                    <IconButton>
                         <MoreVertIcon />
                     </IconButton>
 
@@ -139,7 +152,7 @@ export default ({ darkMode, setDarkMode }) => {
                         color="secondary"
                         startIcon={<AccountCircleIcon />}
                     >Fazer Login</Button>
-                </Toolbar>
+                </div>
             </AppBar>
 
             <Box display='flex'>
@@ -192,6 +205,7 @@ export default ({ darkMode, setDarkMode }) => {
                                 <Box mt={2}>
                                     <Button
                                         color='secondary'
+                                        variant="outlined"
                                         startIcon={<AccountCircleIcon />}
                                     >
                                         Fazer Login
