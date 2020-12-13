@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import AppsIcon from '@material-ui/icons/Apps';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+//import thumb1 from './images/thumb1.png';
+
 
 import logo from './images/preto.png';
 import logoBranco from './images/branco.png';
@@ -51,7 +54,7 @@ const useStyle = makeStyles((theme) => ({
     },
     appbar: {
         boxShadow: 'none',
-        zIndex: theme.zIndex.drawer + 1,
+        zIndex: theme.zIndex.drawer + 1
     },
     grow: {
         flexGrow: 1
@@ -87,6 +90,82 @@ const useStyle = makeStyles((theme) => ({
     }
 }));
 
+// const videos = [
+//     {
+//         id: 1,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+//     {
+//         id: 2,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+//     {
+//         id: 3,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+//     {
+//         id: 4,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+//     {
+//         id: 5,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+//     {
+//         id: 5,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+//     {
+//         id: 6,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+//     {
+//         id: 7,
+//         title: 'Thiago jose da silva',
+//         channel: 'Thiago',
+//         views: '11 mi de visualizações',
+//         date: 'Há 1 semana',
+//         avatar: logo,
+//         thumb: thumb1
+//     },
+
+// ]
+
 export default ({ darkMode, setDarkMode }) => {
     const theme = useTheme();
     const classes = useStyle();
@@ -94,9 +173,6 @@ export default ({ darkMode, setDarkMode }) => {
     const [videos, setVideos] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState(null);
 
-    useEffect(() =>{
-        handleSubmit("todos");
-    },[]);
 
     return (
         <div className={classes.root}>
@@ -112,19 +188,24 @@ export default ({ darkMode, setDarkMode }) => {
                     <img src={theme.palette.type === 'dark' ? logoBranco : logo} alt="logo" className={classes.logo} />
                     <div className={classes.grow} />
 
+
                     <SearchBar onSubmit={handleSubmit} />
+
 
                     <Switch
                         value={darkMode}
                         onChange={() => setDarkMode(!darkMode)}
+                        classes={classes.icons}
                     />
                     <IconButton
                         className={classes.icons}
+
                     >
                         <VideoCallIcon />
                     </IconButton>
                     <IconButton
                         className={classes.icons}
+
                     >
                         <AppsIcon />
                     </IconButton>
@@ -191,6 +272,7 @@ export default ({ darkMode, setDarkMode }) => {
                                 </Typography>
                                 <Box mt={2}>
                                     <Button
+                                        variant='outlines'
                                         color='secondary'
                                         startIcon={<AccountCircleIcon />}
                                     >
@@ -276,20 +358,66 @@ export default ({ darkMode, setDarkMode }) => {
                     </Drawer>
                 </Hidden>
 
-                <Box>
+
+                <Box p={4}>
                     <Toolbar />
-                    <Grid
-                        container
-                        spacing={2}
-                        style={{
-                            padding: "30px",
-                            marginRight: "30px"
-                        }}
+                    <Typography
+                        variant='h5'
+                        color='textPrimary'
+                        style={{ fontWeight: 500 }}
                     >
+                        Recomendados
+                    </Typography>
+
+
+                    <Grid container spacing={2}>
+                        
                         <VideosList
                             videos={videos}
                             onVideoSelect={setSelectedVideo}
                         />
+
+
+
+
+                        {/* {
+                            videos.map((item, index) => (
+                                <Grid item lg={3} md={4} sm={6} xs={12}>
+                                    <Box>
+                                        <img
+                                            style={{ width: '100%' }}
+                                            alt={item.title}
+                                            src={item.thumb}
+                                        />
+                                        <Box>
+                                            <Typography
+                                                style={{ fontWeight: 600 }}
+                                                gutterBotton
+                                                variant='body1'
+                                                color='textPrimary'
+                                            >
+                                                {item.title}
+                                            </Typography>
+                                            <Typography
+                                                style={{ fontWeight: 600 }}
+                                                gutterBotton
+                                                variant='body2'
+                                                color='textSecondary'
+                                            >
+                                                {item.channel}
+                                            </Typography>
+                                            <Typography
+                                                variant='body2'
+                                                color='textSecondary'
+                                            >
+                                                {`${item.views} - ${item.date}`}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
+                            ))
+                        } */}
                     </Grid>
                 </Box>
             </Box>
@@ -300,12 +428,13 @@ export default ({ darkMode, setDarkMode }) => {
         const { data: { items: videos } } = await youtube.get("search", {
             params: {
                 part: "snippet",
-                maxResults: 12,
+                maxResults: 5,
                 key: 'AIzaSyCEdtFcGKYEHWBy_JCUJrzCAsMY3R_xm1o',
                 q: searchTerm
             }
         });
-        setVideos(videos);
-        setSelectedVideo(videos[0]);
     }
+
+    setVideos(videos);
+    setSelectedVideo(videos[0]);
 }
